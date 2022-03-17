@@ -1,10 +1,10 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
     name: MarketPlace
-    network: mainnet
+    network: moonriver
     source:
       address: "0xa8f24a55dcE2826ced9851C02011256614d233c6"
       abi: MarketPlace
@@ -29,9 +29,7 @@ dataSources:
         - event: BidPlaced(indexed address,indexed uint256,indexed uint256,address,uint256,bool)
           handler: handleBidPlaced
         - event: EscrowReturned(indexed address,indexed uint256)
-          handler: handleEscrowReturned
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
+          handler: handleEscrowReturned        
         - event: TokenDelisted(indexed address,indexed uint256,uint256)
           handler: handleTokenDelisted
         - event: TokenListed(indexed address,indexed uint256,indexed uint256,uint256)
