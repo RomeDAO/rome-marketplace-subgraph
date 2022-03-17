@@ -1,0 +1,41 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: MarketPlace
+    network: mainnet
+    source:
+      address: "0xa8f24a55dcE2826ced9851C02011256614d233c6"
+      abi: MarketPlace
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - BidCancelled
+        - BidPlaced
+        - EscrowReturned
+        - OwnershipTransferred
+        - TokenDelisted
+        - TokenListed
+        - TokenPurchased
+      abis:
+        - name: MarketPlace
+          file: ./abis/MarketPlace.json
+      eventHandlers:
+        - event: BidCancelled(indexed address,indexed uint256,indexed uint256,address,bool,uint256)
+          handler: handleBidCancelled
+        - event: BidPlaced(indexed address,indexed uint256,indexed uint256,address,uint256,bool)
+          handler: handleBidPlaced
+        - event: EscrowReturned(indexed address,indexed uint256)
+          handler: handleEscrowReturned
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: TokenDelisted(indexed address,indexed uint256,uint256)
+          handler: handleTokenDelisted
+        - event: TokenListed(indexed address,indexed uint256,indexed uint256,uint256)
+          handler: handleTokenListed
+        - event: TokenPurchased(indexed address,indexed address,indexed uint256,address,uint256)
+          handler: handleTokenPurchased
+      file: ./src/mapping.ts
