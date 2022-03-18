@@ -1,11 +1,11 @@
 #Current status of a token
-type Token {
+type Token @entity {
   id: String! #token-tokenId
   status: String! #listed, delisted, purchased
   token: String!
   tokenId: Int!
   owner: String!
-  lastUpdated: timestamp!
+  lastUpdated: BigInt!
   highestBid: BigDecimal  
   listingPrice: BigDecimal
   purchasePrice: BigDecimal

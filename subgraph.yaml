@@ -3,7 +3,7 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: MarketPlace
+    name: Bid
     network: moonriver
     source:
       address: "0xa8f24a55dcE2826ced9851C02011256614d233c6"
@@ -14,9 +14,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - BidCancelled
-        - BidPlaced
-        - EscrowReturned
-        - OwnershipTransferred
+        - BidPlaced                
         - TokenDelisted
         - TokenListed
         - TokenPurchased
@@ -27,9 +25,7 @@ dataSources:
         - event: BidCancelled(indexed address,indexed uint256,indexed uint256,address,bool,uint256)
           handler: handleBidCancelled
         - event: BidPlaced(indexed address,indexed uint256,indexed uint256,address,uint256,bool)
-          handler: handleBidPlaced
-        - event: EscrowReturned(indexed address,indexed uint256)
-          handler: handleEscrowReturned        
+          handler: handleBidPlaced              
         - event: TokenDelisted(indexed address,indexed uint256,uint256)
           handler: handleTokenDelisted
         - event: TokenListed(indexed address,indexed uint256,indexed uint256,uint256)
@@ -37,3 +33,4 @@ dataSources:
         - event: TokenPurchased(indexed address,indexed address,indexed uint256,address,uint256)
           handler: handleTokenPurchased
       file: ./src/mapping.ts
+  
