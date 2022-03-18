@@ -1,13 +1,17 @@
+#Current status of a token
 type Token {
   id: String! #token-tokenId
   status: String! #listed, delisted, purchased
   token: String!
   tokenId: Int!
   owner: String!
-  currentPrice: BigDecimal
-  lastUpdated: timestamp!  
+  lastUpdated: timestamp!
+  highestBid: BigDecimal  
+  listingPrice: BigDecimal
+  purchasePrice: BigDecimal
 }
 
+#All history of listings
 type Listing @entity {
   id: String! #token-tokenId-lister-timestamp
   type: String! #listed, delisted, purchased
@@ -20,7 +24,8 @@ type Listing @entity {
   to: String
 }
 
-type Offer @entity {
+#All history of bids
+type Bid @entity {
   id: String! #token-tokenId-buyer-timestamp
   token: Token!
   tokenId: Int!
