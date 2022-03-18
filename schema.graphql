@@ -1,6 +1,31 @@
-type ExampleEntity @entity {
-  id: ID!
-  count: BigInt!
-  token: Bytes! # address
-  id: BigInt! # uint256
+type Token {
+  id: String! #token-tokenId
+  status: String! #listed, delisted, purchased
+  token: String!
+  tokenId: Int!
+  owner: String!
+  currentPrice: BigDecimal
+  lastUpdated: timestamp!  
+}
+
+type Listing @entity {
+  id: String! #token-tokenId-lister-timestamp
+  type: String! #listed, delisted, purchased
+  token: Token!
+  tokenId: Int!
+  price: BigDecimal!
+  timestamp: BigInt!
+  lister: String!
+  from: String
+  to: String
+}
+
+type Offer @entity {
+  id: String! #token-tokenId-buyer-timestamp
+  token: Token!
+  tokenId: Int!
+  price: BigDecimal!
+  timestamp: BigInt!
+  buyer: String!
+  escrowed: Boolean!
 }
